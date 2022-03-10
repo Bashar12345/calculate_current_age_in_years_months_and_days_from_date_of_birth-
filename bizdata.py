@@ -6,10 +6,14 @@ months, and days from date of birth in JavaScript or Python.
  Also, submit the task if it is partially complete."""
 
 class today:
-    din=14
-    mash=11
-    bosor=2021
+    def __init__(self, din, mash, bosor):
+        self.din = din
+        self.mash = mash
+        self.bosor = bosor
     # i did not use timezone.now() built-in
+
+    def __repr__(self):
+        return f'day: {self.din}, month: {self.mash}, year: {self.bosor}'
 
 def din_dise():
     date=int(input()) 
