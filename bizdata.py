@@ -24,7 +24,7 @@ def mash_dise():
     if 0<month<13:
         return month
     else:
-        print("Enter a valid date")
+        print("Enter a valid month")
         mash_dise()
 
 def bosor_dise():
@@ -32,7 +32,7 @@ def bosor_dise():
     if year>0:
         return year
     else:
-        print("Enter a valid date")
+        print("Enter a valid year")
         bosor_dise()
 
 def current_age(today,jnmer_din,jnmer_mash,jnmer_bosor): # given same name for better understanding
