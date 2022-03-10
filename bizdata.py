@@ -16,7 +16,7 @@ def din_dise():
     if 0<date<32:
         return date
     else:
-        print("Enter a valid date")
+        print("Enter a valid day")
         din_dise()
 
 def mash_dise():
@@ -27,52 +27,59 @@ def mash_dise():
         print("Enter a valid month")
         mash_dise()
 
-def bosor_dise():
+def bosor_dise(today):
     year = int(input())
-    if year>0:
+    if 0 < year <= today.bosor:
         return year
     else:
-        print("Enter a valid year")
-        bosor_dise()
-
-def current_age(today,jnmer_din,jnmer_mash,jnmer_bosor): # given same name for better understanding
-    if today.bosor>jnmer_bosor:
-       bosor =today.bosor-jnmer_bosor
-       if today.mash>jnmer_mash and today.din<jnmer_din:
-         mash = today.mash-jnmer_mash
-         mash -=1
-         din = (today.din + 30)-jnmer_din
-       elif today.mash<jnmer_mash and today.din<jnmer_din:
-           bosor =today.bosor-jnmer_bosor
-           bosor -=1
-           mash = (today.mash + 12)-jnmer_mash
-           mash -=1
-           din = (today.din + 30)-jnmer_din 
-       else:
-           mash = today.mash-jnmer_mash
-           din = today.din-jnmer_din
-
-    y='years' if (bosor%2)==0 else 'year'
-    m='months' if (mash%2)==0 else 'month'
-    d='days' if (din%2)==0 else 'day'
-
-    print(f'Current age  {bosor} {y}, {mash} {m}, {din} {d}')
+        print("Enter a valid year/ Year cannot be after Birth year.")
+        bosor_dise(today)
 
 
+# given same name for better understanding
+def current_age(today, jnmer_din, jnmer_mash, jnmer_bosor):
+    if today.bosor > jnmer_bosor:
+        bosor = today.bosor-jnmer_bosor
+        if today.mash > jnmer_mash and today.din < jnmer_din:
+            mash = today.mash-jnmer_mash
+            mash -= 1
+            din = (today.din + 30)-jnmer_din
+        elif today.mash < jnmer_mash and today.din < jnmer_din:
+            bosor = today.bosor-jnmer_bosor
+            bosor -= 1
+            mash = (today.mash + 12)-jnmer_mash
+            mash -= 1
+            din = (today.din + 30)-jnmer_din
+        else:
+            mash = today.mash-jnmer_mash
+            din = today.din-jnmer_din
+
+        y = 'years' if (bosor % 2) == 0 else 'year'
+        m = 'months' if (mash % 2) == 0 else 'month'
+        d = 'days' if (din % 2) == 0 else 'day'
+
+        leap_days = int(bosor/4)
+        # print(leap_days)
+
+        print(f'Current age: {bosor} {y}, {mash} {m}, {din+leap_days} {d}')
+    if today.bosor == jnmer_bosor and today.mash > jnmer_mash:
+        print('Enter valid Date, You can"t born in the near future')
 
 
 
+ajker_din = today(11, 3, 2022) # todays date
+print(ajker_din)
 
 print("Enter Date (0 to 31)")
-jnmer_din=din_dise() #print(din)
+jnmer_din = din_dise()  # print(din)
 
 print("Enter Month like: 03 or 05")
-jnmer_mash=mash_dise()
+jnmer_mash = mash_dise()
 
 print("Enter Year like: 1964 or 2005")
-jnmer_bosor=bosor_dise()
+jnmer_bosor = bosor_dise(ajker_din)
 
-current_age(today,jnmer_din,jnmer_mash,jnmer_bosor)
+current_age(ajker_din, jnmer_din, jnmer_mash, jnmer_bosor)
 
 
 
